@@ -1,0 +1,85 @@
+@startuml
+
+class Taxizentrale <<Entity>> {
+name: String
+telefonnummer: Integer
+adresse: Adresse
+kmPreis: Decimal
+grundPreis: Decimal
+'gesamtEinnahmen: decimal
+}
+
+class Auto <<Entity>> {
+marke: Marke
+baujahr: Integer
+kmStand: Integer
+einnahmen: Decimal
+taxiTyp: TaxiTyp
+zentrale: Taxizentrale
+serviceFaelligkeitsdatum: LocalDate
+ps: Integer
+}
+
+class Mitarbeiter <<Entity>> {
+vorname: String
+nachname: String
+geburtsdatum: LocalDate
+telefonnummer: Integer
+auto: Auto
+
+}
+
+class Adresse <<Value Object>> {
+strassename: String
+plz: Integer
+bundesland: Bundesland
+}
+
+class Bundesland <<Entity>> {
+name: String
+}
+
+enum TaxiTyp {
+NICHT-RAUCHER
+BEHINDERTENTRANSPORT
+GROSSRAUM
+VIP
+}
+
+class Modell <<Entity>>{
+name: String
+marke: Marke
+
+}
+
+class Marke <<Entity>>{
+name: String
+}
+
+class Fahrt <<Entity>>{
+start: Adresse
+ziel: Adresse
+laenge: Integer
+kosten: Decimal
+taxifahrer: Mitarbeiter
+}
+
+
+
+
+
+Auto -up- TaxiTyp
+Taxizentrale "0..n" <-down-> "1..n" Auto
+Auto "1" -right- "1" Mitarbeiter
+Taxizentrale "1"  *-right- "1" Adresse
+Adresse "1..n" <-down- "1" Bundesland
+Mitarbeiter "1"-down-> "1..n" Fahrt
+Auto "1..n" <-left- "1" Marke
+Marke "1" -down-> "1..n" Modell
+Fahrt "0..n" <-right-> "1..n" Adresse
+
+
+
+
+
+@enduml
