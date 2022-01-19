@@ -1,4 +1,23 @@
 HELP.md
+
+### Java ###
+**/*.class
+
+### Maven ###
+**/target
+
+# Intellij ###
+**/.idea
+**/*.iml
+
+
+
+
+
+
+
+
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
