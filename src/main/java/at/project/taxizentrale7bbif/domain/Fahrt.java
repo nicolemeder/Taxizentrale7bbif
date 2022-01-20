@@ -22,8 +22,8 @@ public class Fahrt extends AbstractPersistable<Long> {
     private int laengeInKm;
     private BigDecimal kosten;
 
-    @Embedded
-    private Adresse start;
+   // @Embedded
+    //private Adresse start;
     @Embedded
     private Adresse ziel;
 
