@@ -18,9 +18,9 @@ import java.math.BigInteger;
 @Table(name = "fahrten")
 public class Fahrt extends AbstractPersistable<Long> {
 
-    private int laenge;
+    private int laengeInKm;
     private BigInteger kosten;
-
+    
     @Embedded
     private Adresse start;
     @Embedded
