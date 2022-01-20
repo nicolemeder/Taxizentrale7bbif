@@ -21,7 +21,7 @@ public class Mitarbeiter extends AbstractPersistable<Long> {
     private String vorname;
     private String nachname;
     private LocalDate geburtsdatum;
-    private int telefonnummer;
+    private String telefonnummer;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private Auto auto;

@@ -2,10 +2,10 @@
 
 class Taxizentrale <<Entity>> {
 name: String
-telefonnummer: Integer
+telefonnummer: String
 adresse: Adresse
-kmPreis: Decimal
-grundPreis: Decimal
+kmPreis: BigDecimal
+grundPreis: BigDecimal
 'gesamtEinnahmen: decimal
 }
 
@@ -24,7 +24,7 @@ class Mitarbeiter <<Entity>> {
 vorname: String
 nachname: String
 geburtsdatum: LocalDate
-telefonnummer: Integer
+telefonnummer: String
 auto: Auto
 
 }
@@ -60,7 +60,7 @@ class Fahrt <<Entity>>{
 start: Adresse
 ziel: Adresse
 laengeInKm: Integer
-kosten: Decimal
+kosten: BigDecimal
 taxifahrer: Mitarbeiter
 }
 

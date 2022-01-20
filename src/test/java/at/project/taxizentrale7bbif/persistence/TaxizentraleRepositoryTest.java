@@ -33,7 +33,7 @@ class TaxizentraleRepositoryTest {
                 .name("Weitz")
                 .telefonnummer("+438476538")
                 .adresse(adresse) //embedded address
-                .kmPreis(5.5)
+                .kmPreis(5)
                 .grundPreis(2)
                 .build();
         //when && (save methode)

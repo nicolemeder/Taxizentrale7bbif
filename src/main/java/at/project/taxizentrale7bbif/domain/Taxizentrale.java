@@ -21,7 +21,7 @@ public class Taxizentrale extends AbstractPersistable<Long> {
                             //instead of a primary key (@id) we use AbstractPersi....
     private String name;
     private String telefonnummer;
-    private double kmPreis;
+    private int kmPreis;
     private int grundPreis;
 
     @Embedded //taxizentrale will also get the columns from the address class
