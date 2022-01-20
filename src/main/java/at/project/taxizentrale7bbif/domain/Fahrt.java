@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Data
@@ -19,7 +20,7 @@ import java.math.BigInteger;
 public class Fahrt extends AbstractPersistable<Long> {
 
     private int laengeInKm;
-    private BigInteger kosten;
+    private BigDecimal kosten;
 
     @Embedded
     private Adresse start;
