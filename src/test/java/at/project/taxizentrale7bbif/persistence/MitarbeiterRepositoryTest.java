@@ -1,18 +1,17 @@
 package at.project.taxizentrale7bbif.persistence;
 
 import at.project.taxizentrale7bbif.domain.Mitarbeiter;
-import jdk.dynalink.linker.support.Guards;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DataJpaTest
 class MitarbeiterRepositoryTest {
 
     @Autowired
-    private MitarbeiterRepository;
+    private MitarbeiterRepository mitarbeiterRepository;
 
     @Test
     void ensureSavingAMitarbeiterWorks(){
@@ -24,7 +23,7 @@ class MitarbeiterRepositoryTest {
 
 
         //when
-        var saved :Mitarbeiter = repository.save(ma);
+        var saved  = mitarbeiterRepository.save(ma);
 
         //then
         assertThat(saved).isNotNull().isSameAs(ma);
