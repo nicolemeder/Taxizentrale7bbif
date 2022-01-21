@@ -10,6 +10,8 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
+import static at.project.taxizentrale7bbif.foundation.EnsurerFactory.when;
+
 @Data //data class
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,4 +28,10 @@ public class Taxizentrale extends AbstractPersistable<Long> {
 
     @Embedded //taxizentrale will also get the columns from the address class
     private Adresse adresse;
+
+    public Taxizentrale(String name, String telefonnummer, int kmPreis, int grundPreis)
+    {
+        this.name = when(name, "name").isNotEmpty().isNotBlank().thenAssign();
+        this.telefonnummer = when(telefonnummer, "telefonnummer").isNotEmpty().isNotBlank().thenAssign();
+    }
 }
