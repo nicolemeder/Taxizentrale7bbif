@@ -57,9 +57,9 @@ name: String
 }
 
 class Fahrt <<Entity>>{
-start: Adresse
+'start: Adresse
 ziel: Adresse
-laengeInKm: Integer
+streckeInKm: Integer
 kosten: BigDecimal
 taxifahrer: Mitarbeiter
 }
@@ -76,7 +76,7 @@ Adresse "1..n" <-- "1" Bundesland
 Mitarbeiter "1"--> "0..n" Fahrt
 Auto "1..n" <-- "1" Marke
 Marke "1" --> "1..n" Modell
-Fahrt "1..n" <-- "1" Adresse
+'Fahrt "1..n" <-- "1" Adresse
 Fahrt "1..n" <-- "1" Adresse
 
 
