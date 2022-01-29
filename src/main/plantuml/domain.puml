@@ -15,9 +15,12 @@ baujahr: Integer
 kmStand: Integer
 einnahmen: Decimal
 taxiTyp: TaxiTyp
-zentrale: Taxizentrale
 serviceFaelligkeitsdatum: LocalDate
 ps: Integer
+}
+class ZentraleAuto <<Entity>>{
+zentrale: Taxizentrale
+auto: Auto
 }
 
 class Mitarbeiter <<Entity>> {
@@ -69,7 +72,8 @@ taxifahrer: Mitarbeiter
 
 
 Auto -right- TaxiTyp
-Taxizentrale "1" -up-> "1..n" Auto
+ZentraleAuto "1..n" -up-> "1" Auto
+ZentraleAuto "1..n" --> "1" Taxizentrale
 Auto "1..n" <-left- "1" Mitarbeiter
 Taxizentrale "1"  *-- "1" Adresse
 Adresse "1..n" <-- "1" Bundesland
