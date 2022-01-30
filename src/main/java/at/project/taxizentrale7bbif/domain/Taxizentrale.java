@@ -10,8 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.*;
 
-import at.project.taxizentrale7bbif.domain.Taxizentrale.*;
-
 import static at.project.taxizentrale7bbif.foundation.EnsurerFactory.when;
 
 @Data //data class
@@ -23,6 +21,10 @@ import static at.project.taxizentrale7bbif.foundation.EnsurerFactory.when;
 @Table(name = "taxizentralen")
 public class Taxizentrale extends AbstractPersistable<Long> {
     //instead of a primary key (@id) we use AbstractPersi....
+
+    @Version
+    private Integer version;
+
     @NotNull
     @NotBlank
     @NotEmpty
@@ -30,11 +32,11 @@ public class Taxizentrale extends AbstractPersistable<Long> {
     @Size(min = 10, max = 10)
     private String telefonnummer;
     @Positive
-    private int kmPreis;
+    private Integer kmPreis;
     @Positive
     @Min(1)
     @Max(5)
-    private int grundPreis;
+    private Integer grundPreis;
 
     @Embedded //taxizentrale will also get the columns from the address class
     private Adresse adresse;
