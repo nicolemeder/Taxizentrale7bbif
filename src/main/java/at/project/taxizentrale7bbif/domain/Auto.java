@@ -25,15 +25,18 @@ import java.time.Year;
 @Table(name = "autos")
 public class Auto extends AbstractPersistable<Long> {
 
+
+    @Version
+    private Integer version;
     @PastOrPresent
     private Year baujahr;
     @Positive
-    private int kmStand;
+    private Integer kmStand;
     private BigInteger einnahmen;
     @Future
     private LocalDate serviceFaelligkeitsdatum;
     @Positive
-    private int ps;
+    private Integer ps;
 
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, optional = false)

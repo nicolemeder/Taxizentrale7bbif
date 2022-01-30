@@ -5,9 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Embeddable;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
@@ -16,11 +15,18 @@ import javax.persistence.ManyToOne;
 
 @Embeddable
 public class Adresse {
+    @NotNull
+    @NotBlank
+    @NotEmpty
     private String strassennamen;
-    private int plz;
+    @Min(4)
+    @Max(4)
+    private Integer plz;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_Adresse_2_Bundesland"))
     private Bundesland bundesland;
+
 
 
 
