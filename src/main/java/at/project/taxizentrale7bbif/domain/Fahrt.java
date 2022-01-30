@@ -19,6 +19,7 @@ import java.math.BigDecimal;
 @Table(name = "fahrten")
 public class Fahrt extends AbstractPersistable<Long> {
 
+
     @Positive
     private Integer streckeInKm;
     private BigDecimal kosten;

@@ -25,6 +25,7 @@ import java.time.Year;
 @Table(name = "autos")
 public class Auto extends AbstractPersistable<Long> {
 
+
     @Version
     private Integer version;
     @PastOrPresent
