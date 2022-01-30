@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 
 @RestController
-@RequestMapping("/taxizentralen")
+@RequestMapping("/zentrale")
 public class TaxizentraleRestController {
 
     private final TaxizentraleService taxizentraleService;
