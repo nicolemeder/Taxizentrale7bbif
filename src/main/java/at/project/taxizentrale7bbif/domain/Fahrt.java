@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 @Data
 @NoArgsConstructor
@@ -19,7 +19,8 @@ import java.math.BigInteger;
 @Table(name = "fahrten")
 public class Fahrt extends AbstractPersistable<Long> {
 
-    private int laengeInKm;
+    @Positive
+    private Integer streckeInKm;
     private BigDecimal kosten;
 
     //@Embedded
@@ -28,6 +29,7 @@ public class Fahrt extends AbstractPersistable<Long> {
     private Adresse ziel;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_Fahrt_2_Mitarbeiter"))
     private Mitarbeiter taxifahrer;
 
 
