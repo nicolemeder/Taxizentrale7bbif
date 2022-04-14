@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,8 @@ import java.util.Optional;
 public class FahrtService {
 
     private final FahrtRepository fahrtRepository;
+   // private final TemporalValueFactory temporalValueFactory;
+    private final TokenService tokenService;
 
     public List<Fahrt> getFahrten()
     {
@@ -26,14 +29,15 @@ public class FahrtService {
     public Optional<Fahrt> getFahrt(Long id) { return fahrtRepository.findById(id); }
 
     public Fahrt createFahrt(MutateFahrtCommand command) {
-        Fahrt fahrt = Fahrt.builder()
-                .nummer(command.getNummer())
-                .taxifahrer(Mitarbeiter.builder()
-                        .vorname(command.getVorname())
-                        .nachname(command.getNachname())
-                        .build())
-                .build();
-        return fahrtRepository.save(fahrt);
+    Fahrt fahrt = Fahrt.builder()
+            .nummer(command.getNummer())
+            .taxifahrer(Mitarbeiter.builder()
+                    .vorname(command.getVorname())
+                    .nachname(command.getNachname())
+                    .build())
+            .build();
+    return fahrtRepository.save(fahrt);
+
     }
 
     public Fahrt replaceFahrt(Long id, MutateFahrtCommand command) {
@@ -70,7 +74,20 @@ public class FahrtService {
     public void deleteFahrt(Long id) { fahrtRepository.deleteById(id);}
 
 
-
+   /* private Fahrt _createFahrt(Optional<String> token, MutateFahrtCommand command) {
+        //LocalDateTime creationTS = temporalValueFactory.now();
+        String tokenValue = token.orElseGet(() -> tokenService.createNanoToken());
+        Fahrt fahrt = Fahrt.builder()
+                .nummer(command.getNummer())
+                //.token(tokenValue)
+                //.creationTS(creationTS)
+                .taxifahrer(Mitarbeiter.builder()
+                        .vorname(command.getVorname())
+                        .nachname(command.getNachname())
+                        .build())
+                .build();
+        return FahrtRepository.save(fahrt);
+    }*/
 
 
 
