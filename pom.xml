@@ -63,6 +63,12 @@
             <version>${querydsl.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.hashids</groupId>
+            <artifactId>hashids</artifactId>
+            <version>1.0.3</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
