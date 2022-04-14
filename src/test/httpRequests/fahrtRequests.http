@@ -50,3 +50,22 @@ Accept: application/json
   "nachname" : "Taylor"
 }
 ###
+PUT http://localhost:8080/api/fahrten/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nummer" : "4",
+  "vorname" : "ROGER",
+  "nachname" : "Taylor"
+}
+###
+PATCH http://localhost:8080/api/fahrten/
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nummer" : "4",
+  "nachname" : "TAYLOR"
+}
+###
