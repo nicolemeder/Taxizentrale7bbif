@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class MutateFahrtCommand {
-    private Integer nummer;
+    private String nummer;
     private String vorname;
     private String nachname;
 }
