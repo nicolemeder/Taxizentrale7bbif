@@ -1,0 +1,52 @@
+GET http://localhost:8080/api/fahrten
+Accept: application/json
+
+###
+GET http://localhost:8080/api/fahrten/
+Accept: application/json
+
+###
+GET http://localhost:8080/api/fahrten/1
+Accept: application/json
+
+###
+POST http://localhost:8080/api/fahrten
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nummer" : "1",
+  "vorname" : "Freddie",
+  "nachname" : "Mercury"
+}
+###
+POST http://localhost:8080/api/fahrten
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nummer" : "2",
+  "vorname" : "Brian",
+  "nachname" : "May"
+}
+###
+POST http://localhost:8080/api/fahrten
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nummer" : "3",
+  "vorname" : "John",
+  "nachname" : "Deacon"
+}
+###
+POST http://localhost:8080/api/fahrten
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nummer" : "4",
+  "vorname" : "Roger",
+  "nachname" : "Taylor"
+}
+###
