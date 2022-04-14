@@ -7,11 +7,13 @@ import at.project.taxizentrale7bbif.service.dtos.MutateFahrtCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class FahrtService {
 
     private final FahrtRepository fahrtRepository;
