@@ -1,5 +1,4 @@
-package at.project.taxizentrale7bbif.service;
-
+/*package at.project.taxizentrale7bbif.service;
 import at.project.taxizentrale7bbif.foundation.NanoIdFactory;
 import at.project.taxizentrale7bbif.foundation.TokenSourceProvider;
 import lombok.RequiredArgsConstructor;
@@ -54,9 +53,7 @@ public class TokenService {
         return createNanoToken(DEFAULT_NANO_ID_LENGTH);
     }
 
-    public String createNanoToken(int size) {
-        return nanoIdFactory.randomNanoId(size);
-    }
+    public String createNanoToken(int size) { return nanoIdFactory.randomNanoId(size);}
 
 
 
@@ -75,7 +72,7 @@ public class TokenService {
 }
 
 
-
+*/
 
 
 
