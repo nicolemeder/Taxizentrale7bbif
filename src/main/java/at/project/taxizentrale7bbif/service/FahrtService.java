@@ -5,6 +5,9 @@ import at.project.taxizentrale7bbif.domain.Mitarbeiter;
 import at.project.taxizentrale7bbif.persistence.FahrtRepository;
 import at.project.taxizentrale7bbif.service.dtos.MutateFahrtCommand;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,17 +16,23 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Slf4j //logging
 @Service
 @Transactional
 public class FahrtService {
 
     private final FahrtRepository fahrtRepository;
    // private final TemporalValueFactory temporalValueFactory;
-    private final TokenService tokenService;
+   // private final TokenService tokenService;
+
+    //private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public List<Fahrt> getFahrten()
     {
-        return fahrtRepository.findAll();
+        var fahrten = fahrtRepository.findAll();
+        //System.out.println(fahrten.size() + " Fahrten wurden gefunden.");
+        log.info("Es wurden {} Fahrten gefunden", fahrten.size()); //log statement
+        return fahrten;
     }
 
     public Optional<Fahrt> getFahrt(Long id) { return fahrtRepository.findById(id); }
