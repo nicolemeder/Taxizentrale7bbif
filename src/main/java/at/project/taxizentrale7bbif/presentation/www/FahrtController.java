@@ -4,24 +4,18 @@ import at.project.taxizentrale7bbif.domain.Fahrt;
 import at.project.taxizentrale7bbif.persistence.FahrtRepository;
 import at.project.taxizentrale7bbif.service.FahrtService;
 import at.project.taxizentrale7bbif.service.MitarbeiterService;
-import at.project.taxizentrale7bbif.service.dtos.FahrtDTO;
 import at.project.taxizentrale7bbif.service.dtos.MutateFahrtCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.web.server.Cookie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
-import static at.project.taxizentrale7bbif.domain.QFahrt.fahrt;
 
 @RequiredArgsConstructor
 @Controller
