@@ -27,8 +27,7 @@ public class FahrtService {
 
     //private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public List<Fahrt> getFahrten()
-    {
+    public List<Fahrt> getFahrten() {
         var fahrten = fahrtRepository.findAll();
         //System.out.println(fahrten.size() + " Fahrten wurden gefunden.");
         log.info("Es wurden {} Fahrten gefunden", fahrten.size()); //log statement
@@ -36,6 +35,10 @@ public class FahrtService {
     }
 
     public Optional<Fahrt> getFahrt(Long id) { return fahrtRepository.findById(id); }
+
+    public List<Fahrt> getFahrtByNummer(String nummer) {
+        return fahrtRepository.findByNummer(nummer);
+    }
 
     public Fahrt createFahrt(MutateFahrtCommand command) {
     Fahrt fahrt = Fahrt.builder()
