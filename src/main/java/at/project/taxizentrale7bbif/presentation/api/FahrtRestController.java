@@ -11,9 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.crypto.spec.OAEPParameterSpec;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -29,19 +31,31 @@ public class FahrtRestController {
     private final FahrtService fahrtService;
 
     @GetMapping({"",PATH_INDEX})
-    public HttpEntity<List<FahrtDTO>> getFahrten() {
-        List<Fahrt> fahrten = fahrtService.getFahrten();
+    public HttpEntity<List<FahrtDTO>> getFahrten(@RequestParam(required = false)Optional<String> nummer) {
+        List<FahrtDTO> fahrten = nummer.map(fahrtService::getFahrtByNummer)
+                .orElseGet(fahrtService::getFahrten)
+                .stream()
+                .map(FahrtDTO::new)
+                .toList();
+
         return (fahrten.isEmpty())
                 ? ResponseEntity.noContent().build()
-                : ResponseEntity.ok(fahrten.stream().map(FahrtDTO::new).toList());
+                : ResponseEntity.ok(fahrten);
     }
-
     @GetMapping(PATH_VAR_ID)
     public HttpEntity<FahrtDTO> getFahrt(@PathVariable Long id) {
         return fahrtService.getFahrt(id)
                 .map(FahrtDTO::new)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping(PATH_INDEX)
+    public HttpEntity<List<FahrtDTO>> getFahrtByNummer(@RequestParam String nummer) {
+        List<Fahrt> fahrten = fahrtService.getFahrtByNummer(nummer);
+        return (fahrten.isEmpty())
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.ok(fahrten.stream().map(FahrtDTO::new).toList());
     }
 
     @PostMapping({"", PATH_INDEX})
