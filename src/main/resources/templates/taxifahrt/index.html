@@ -16,6 +16,7 @@
         <th scope="col">#</th>
         <th scope="col">Mitarbeiter</th>
         <th scope="col">Fahrtnummer</th>
+        <th><a class="btn btn-info btn-sm" th:href="@{/fahrten/new}">Add</a></th>
     </tr>
     </thead>
     <tbody>
@@ -23,6 +24,8 @@
         <th scope="row" th:text="${fahrtStatus.index}">1</th>
         <td th:text="*{taxifahrer.vorname * ' ' * taxifahrer.nachname}">Freddie Mercury</td>
         <td th:text="*{nummer}">FM743848</td>
+        <td><a th:href="@{/edit/{id}(id=${fahrt.id})}">Edit</a></td>
+        <td><a th:href="@{/delete/{id}(id=${fahrt.id})}">Delete</a></td>
     </tr>
     </tbody>
     </table>
