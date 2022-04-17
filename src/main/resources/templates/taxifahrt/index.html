@@ -3,21 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Taxifahrten</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-   </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css">
+</head>
 
 <body>
 
 <div class = "container">
-    <h1>Taxifahrten</h1>
+    <h1 th:text="#{fahrten.titel}">Taxifahrten</h1>
     <table class="table">
     <thead>
     <tr>
         <th scope="col">#</th>
         <th scope="col">Mitarbeiter</th>
         <th scope="col">Fahrtnummer</th>
-        <th scope="col">Km</th>
-        <th scope="col">Kosten</th>
     </tr>
     </thead>
     <tbody>
@@ -25,15 +23,13 @@
         <th scope="row" th:text="${fahrtStatus.index}">1</th>
         <td th:text="*{taxifahrer.vorname * ' ' * taxifahrer.nachname}">Freddie Mercury</td>
         <td th:text="*{nummer}">FM743848</td>
-        <!--td th:text="*{streckeInKm}">50</td>
-        <td th:text="*{kosten}">70,90</td-->
     </tr>
     </tbody>
     </table>
 </div>
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+
 
 <!-- jQuery library -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
