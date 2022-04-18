@@ -15,18 +15,30 @@
                 <label class="col-sm-2 col-form-label">Nummer:</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" th:field="*{fahrt.nummer}"/>
+                    <div class="alert alert-danger" role="alert"
+                        th:if="${#fields.hasErrors('fahrt.nummer')}"
+                    th:text="${#strings.listJoin(#fields.errors('fahrt.nummer'), ',')}">
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Vorname:</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" th:field="*{neuerMitarbeiter.vorname}" />
+                    <div class="alert alert-danger" role="alert"
+                         th:if="${#fields.hasErrors('neuerMitarbeiter.vorname')}"
+                         th:text="${#strings.listJoin(#fields.errors('neuerMitarbeiter.vorname'), ',')}">
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nachname:</label>
                 <div class="col-sm-6">
                     <input type="text" class="form-control" th:field="*{neuerMitarbeiter.nachname}" />
+                    <div class="alert alert-danger" role="alert"
+                         th:if="${#fields.hasErrors('neuerMitarbeiter.nachname')}"
+                         th:text="${#strings.listJoin(#fields.errors('neuerMitarbeiter.nachname'), ',')}">
+                    </div>
                 </div>
             </div>
             <p></p>

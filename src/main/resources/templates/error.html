@@ -10,10 +10,11 @@
 <body>
 <div class="container">
     <h1 th:text="#{error.general}">Error</h1>
-    <p th:text="${error}">Folgender Fehler ist aufgetreten: </p>
+    <p>Folgender Fehler ist aufgetreten: </p>
+    <p th:text="${error}"></p>
 
     <div>
-        <a th:href="@{/fahrten}" th:text="#{button.back}">zurück</a>
+        <a href="/fahrten" th:text="#{button.back}">zurück</a>
     </div>
 
 </div>

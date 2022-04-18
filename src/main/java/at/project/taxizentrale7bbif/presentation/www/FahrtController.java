@@ -4,7 +4,6 @@ import at.project.taxizentrale7bbif.domain.Fahrt;
 import at.project.taxizentrale7bbif.persistence.FahrtRepository;
 import at.project.taxizentrale7bbif.service.FahrtService;
 import at.project.taxizentrale7bbif.service.MitarbeiterService;
-import at.project.taxizentrale7bbif.service.dtos.MutateFahrtCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -53,7 +52,7 @@ public class FahrtController {
     public String handleGeneralErrors(Throwable t, Model model) {
         log.warn("Es ist etwas passiert {}", t.getMessage());
         model.addAttribute("error", "Ein Fehler ist aufgetreten!");
-        return "taxifahrt/error";
+        return "/error";
     }
 
 
@@ -97,7 +96,7 @@ public class FahrtController {
     public String updateFahrt(@PathVariable("id") Long id, @Valid Fahrt fahrt,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "redirect:/fahrten/error";
+            return "redirect:/error";
         }
         fahrtService.partiallyUpdateFahrt(id, fahrt);
         return "redirect:/fahrten";
@@ -113,7 +112,7 @@ public class FahrtController {
 
     @GetMapping(ERROR)
     public String error() {
-        return "/taxifahrt/error";
+        return "/error";
     }
 }
 
