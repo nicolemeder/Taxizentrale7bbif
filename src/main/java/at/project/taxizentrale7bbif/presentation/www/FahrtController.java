@@ -12,9 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @RequiredArgsConstructor
@@ -31,22 +28,20 @@ public class FahrtController {
     public static final String PATH_INDEX = "/";
     public static final String PATH_VAR_ID = "/{id}";
     public static final String ROUTE_NEW = "/new";
+    public static final String ROUTE_SHOW = "/show" + PATH_VAR_ID;
     public static final String ROUTE_DELETE = "/delete" + PATH_VAR_ID;
     public static final String ROUTE_UPDATE = "/update" + PATH_VAR_ID;
+    public static final String ERROR = "/error";
 
     @GetMapping({"", PATH_INDEX})
-    public String index(Model model, HttpServletResponse resp, HttpServletRequest req, HttpSession session) {
+    public String index(Model model) {
         var fahrten = fahrtService.getFahrten();
-        if (fahrten.size() == 1) {
-            model.addAttribute("fahrten", fahrten.get(0));
-            return "taxifahrt/show";
-        } else {
             model.addAttribute("fahrten", fahrten);
             return "taxifahrt/index";
         }
-    }
 
-    @GetMapping(PATH_VAR_ID)
+
+    @GetMapping(ROUTE_SHOW)
     public String show(Model model, @PathVariable Long id) {
         return fahrtService.getFahrt(id)
                 .map(fahrt -> model.addAttribute("fahrt", fahrt))
@@ -66,54 +61,59 @@ public class FahrtController {
     @GetMapping(ROUTE_NEW)
     public String showCreateForm(Model model) {
         model.addAttribute("mitarbeiter", mitarbeiterService.getMitarbeiter());
-        model.addAttribute("fahrt", fahrtService.getFahrten());
-        model.addAttribute("neueFahrt", new CreateFahrtForm());
+        model.addAttribute("fahrt", new CreateFahrtForm());
         model.addAttribute("neuerMitarbeiter", new CreateMitarbeiterForm());
         return "taxifahrt/create";
     }
 
-    /*@PostMapping(ROUTE_NEW)
+    @PostMapping(ROUTE_NEW)
     public String handleCreateForm(@Valid @ModelAttribute(name = "neueFahrt") CreateFahrtForm newFahrtForm, BindingResult brNewFahrtForm,
                                    @Valid @ModelAttribute(name = "neuerMitarbeiter") CreateMitarbeiterForm newMitarbeiterForm, BindingResult brNewMitarbeiterForm,
                                    Model model) {
 
         if (brNewFahrtForm.hasErrors() || brNewMitarbeiterForm.hasErrors()) {
-            model.addAttribute("Mitarbeiter", mitarbeiterService.getMitarbeiter());
-            return "fahrten/create";
+            model.addAttribute("mitarbeiter", mitarbeiterService.getMitarbeiter());
+            model.addAttribute("fahrt", new CreateFahrtForm());
+            model.addAttribute("neuerMitarbeiter", new CreateMitarbeiterForm());
+            log.error(brNewFahrtForm.getAllErrors().toString());
+            return "taxifahrt/create";
         }
         fahrtService.createFahrt(newFahrtForm, newMitarbeiterForm);
 
-        return BASE_URL;
+        return "redirect:/fahrten";
     }
 
-*/
+
     @GetMapping(ROUTE_UPDATE)
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Fahrt fahrt = fahrtRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Fahrt Id:" + id));
 
         model.addAttribute("fahrt", fahrt);
-        return "/taxifahrt/edit" + PATH_VAR_ID;
+        return "/taxifahrt/edit";
     }
 
     @PostMapping(ROUTE_UPDATE)
-    public String updateFahrt(@PathVariable("id") Long id, MutateFahrtCommand command, @Valid Fahrt fahrt,
+    public String updateFahrt(@PathVariable("id") Long id, @Valid Fahrt fahrt,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
-            fahrtService.partiallyUpdateFahrt(id, command);
-            return BASE_URL;
+            return "redirect:/fahrten/error";
         }
-
-        fahrtRepository.save(fahrt);
-        return BASE_URL;
+        fahrtService.partiallyUpdateFahrt(id, fahrt);
+        return "redirect:/fahrten";
     }
 
     @GetMapping(ROUTE_DELETE)
     public String deleteFahrt(@PathVariable("id") long id, Model model) {
         Fahrt fahrt = fahrtRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Fahrt Id:" + id));
-        fahrtRepository.delete(fahrt);
-        return BASE_URL;
+        fahrtRepository.deleteById(id);
+        return "redirect:/fahrten";
+    }
+
+    @GetMapping(ERROR)
+    public String error() {
+        return "/taxifahrt/error";
     }
 }
 

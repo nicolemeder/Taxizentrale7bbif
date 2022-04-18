@@ -3,6 +3,8 @@ package at.project.taxizentrale7bbif.service;
 import at.project.taxizentrale7bbif.domain.Fahrt;
 import at.project.taxizentrale7bbif.domain.Mitarbeiter;
 import at.project.taxizentrale7bbif.persistence.FahrtRepository;
+import at.project.taxizentrale7bbif.presentation.www.CreateFahrtForm;
+import at.project.taxizentrale7bbif.presentation.www.CreateMitarbeiterForm;
 import at.project.taxizentrale7bbif.service.dtos.MutateFahrtCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,8 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+
+import static at.project.taxizentrale7bbif.domain.QFahrt.fahrt;
 
 @RequiredArgsConstructor
 @Slf4j //logging
@@ -81,14 +85,29 @@ public class FahrtService {
         throw new IllegalStateException("Diese Fahrt mit der ID '" +id+ "' kann nicht gefunden werden.");
     }
 
+    public Fahrt partiallyUpdateFahrt(Long id, Fahrt newFahrt) {
+        Optional<Fahrt> entity = fahrtRepository.findById(id);
+
+        if(entity.isPresent()) {
+            Fahrt oldFahrt = entity.get();
+
+            if (newFahrt.getNummer() != null) oldFahrt.setNummer((newFahrt.getNummer()));
+            if (newFahrt.getTaxifahrer().getVorname() != null) oldFahrt.getTaxifahrer().setVorname(newFahrt.getTaxifahrer().getVorname());
+            if (newFahrt.getTaxifahrer().getNachname() != null) oldFahrt.getTaxifahrer().setNachname(newFahrt.getTaxifahrer().getNachname());
+
+            return fahrtRepository.save(oldFahrt);
+        }
+        throw new IllegalStateException("Diese Fahrt mit der ID '" +id+ "' kann nicht gefunden werden.");
+    }
+
     public void deleteFahrten() { fahrtRepository.deleteAll(); }
 
     public void deleteFahrt(Long id) { fahrtRepository.deleteById(id);}
 
 
-   /* private Fahrt _createFahrt(Optional<String> token, MutateFahrtCommand command) {
+    private Fahrt _createFahrt(/*Optional<String> token,*/ MutateFahrtCommand command) {
         //LocalDateTime creationTS = temporalValueFactory.now();
-        String tokenValue = token.orElseGet(() -> tokenService.createNanoToken());
+       // String tokenValue = token.orElseGet(() -> tokenService.createNanoToken());
         Fahrt fahrt = Fahrt.builder()
                 .nummer(command.getNummer())
                 //.token(tokenValue)
@@ -98,14 +117,19 @@ public class FahrtService {
                         .nachname(command.getNachname())
                         .build())
                 .build();
-        return FahrtRepository.save(fahrt);
-    }*/
+        return fahrtRepository.save(fahrt);
+    }
 
 
+    public void createFahrt(CreateFahrtForm newFahrtForm, CreateMitarbeiterForm newMitarbeiterForm) {
+        Fahrt fahrt = Fahrt.builder()
+                .nummer(newFahrtForm.getNummer())
+                .taxifahrer(Mitarbeiter.builder()
+                        .vorname(newMitarbeiterForm.getVorname())
+                        .nachname(newMitarbeiterForm.getNachname())
+                        .build())
+                .build();
 
-
-
-
-
-
+        fahrtRepository.save(fahrt);
+    }
 }

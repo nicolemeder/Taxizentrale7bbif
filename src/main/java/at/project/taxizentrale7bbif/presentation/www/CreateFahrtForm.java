@@ -17,6 +17,7 @@ public class CreateFahrtForm {
 
     private Long mitarbeiterId;
 
+    /*
     @NotNull
     private MitarbeiterTyp mitarbeiterTyp;
 
@@ -26,6 +27,8 @@ public class CreateFahrtForm {
 
         public boolean isExisting() { return this == EXISTING; }
     }
+
+     */
 
 
 }

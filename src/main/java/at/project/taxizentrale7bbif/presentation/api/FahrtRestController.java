@@ -20,7 +20,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping(FahrtRestController.BASE_URL)
-
 public class FahrtRestController {
 
     public static final String BASE_URL = "/api/fahrten";

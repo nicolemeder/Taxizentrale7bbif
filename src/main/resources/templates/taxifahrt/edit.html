@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h3>Fahrt bearbeiten</h3>
-        <form class="form-horizontal" method="post" th:action="@{/edit/{id}(id=${fahrt.id})}" th:object="${fahrt}">
+        <form class="form-horizontal" method="post" th:action="@{/fahrten/update/{id}(id=${fahrt.id})}" th:object="${fahrt}">
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nummer:</label>

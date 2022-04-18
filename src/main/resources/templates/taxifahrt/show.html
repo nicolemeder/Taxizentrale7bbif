@@ -12,19 +12,23 @@
 
 <table class="table">
     <tbody>
-    <tr th:object="${fahrt}">
-        <th scope="col" th:text="#{fahrt.nummer}">Fahrtnummer</th>
-        <td th:text="*{nummer}">Fahrtnummer</td>
+    <tr>
+        <th scope="col">Fahrtnummer</th>
+        <td th:text="*{fahrt.nummer}">Fahrtnummer</td>
     </tr>
     <tr>
-        <th scope="col" th:text="#{fahrt.taxifahrer}">Taxifahrer</th>
-        <td th:text="*{fahrt.vorname + ' ' + fahrt.nachname}">Freddie Mercury</td>
+        <th scope="col">Vorname</th>
+        <td th:text="*{fahrt.taxifahrer.vorname}"></td>
+    </tr>
+    <tr>
+        <th scope="col" th:text="#{fahrt.taxifahrer}">Nachname</th>
+        <td th:text="*{fahrt.taxifahrer.nachname}"></td>
     </tr>
     </tbody>
 </table>
 
     <div>
-        <a class="btn" th:href="@{/fahrten}" th:text="#{button.back}">back</a>
+        <a class="btn" href="/fahrten" th:text="#{button.back}">back</a>
     </div>
 
 </div>

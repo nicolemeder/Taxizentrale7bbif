@@ -14,18 +14,20 @@
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Mitarbeiter</th>
+        <th scope="col" colspan="2">Taxifahrer</th>
         <th scope="col">Fahrtnummer</th>
-        <th><a class="btn btn-info btn-sm" th:href="@{/fahrten/new}">Add</a></th>
+        <th colspan="1" rowspan="1"><a class="btn btn-info" th:href="@{/fahrten/new}">Add</a></th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="fahrt, fahrtStatus : ${fahrten}" th:object="${fahrt}">
-        <th scope="row" th:text="${fahrtStatus.index}">1</th>
-        <td th:text="*{taxifahrer.vorname * ' ' * taxifahrer.nachname}">Freddie Mercury</td>
-        <td th:text="*{nummer}">FM743848</td>
-        <td><a th:href="@{/edit/{id}(id=${fahrt.id})}">Edit</a></td>
-        <td><a th:href="@{/delete/{id}(id=${fahrt.id})}">Delete</a></td>
+        <th scope="row" th:text="${fahrtStatus.index}"></th>
+        <td th:text="*{taxifahrer.vorname}"></td>
+        <td th:text="*{taxifahrer.nachname}"></td>
+        <td th:text="*{nummer}"></td>
+        <td><a class="btn btn-outline-primary" th:href="@{/fahrten/update/{id}(id=${fahrt.id})}">Edit</a>
+            <a class="btn btn-outline-primary" th:href="@{/fahrten/show/{id}(id=${fahrt.id})}">Details</a>
+            <a class="btn btn-outline-primary" th:href="@{/fahrten/delete/{id}(id=${fahrt.id})}">Delete</a></td>
     </tr>
     </tbody>
     </table>

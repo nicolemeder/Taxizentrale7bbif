@@ -10,23 +10,23 @@
 
     <div class="container">
         <h3>Fahrt anlegen</h3>
-        <form class="form-horizontal"  th:action="@{/new}" th:object="${fahrt}" method="post">
+        <form class="form-horizontal"  th:action="@{/fahrten/new}" method="post">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nummer:</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" th:field="*{nummer}"/>
+                    <input type="text" class="form-control" th:field="*{fahrt.nummer}"/>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Vorname:</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" th:field="*{taxifahrer.vorname}" />
+                    <input type="text" class="form-control" th:field="*{neuerMitarbeiter.vorname}" />
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nachname:</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" th:field="*{taxifahrer.nachname}" />
+                    <input type="text" class="form-control" th:field="*{neuerMitarbeiter.nachname}" />
                 </div>
             </div>
             <p></p>
