@@ -25,10 +25,13 @@ public class Modell extends AbstractPersistable<Long> {
     @NotEmpty
     private String name;
 
+    /*
     @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_Modell_2_Marke"))
     private Marke marke;
 
+
+     */
 
 
 

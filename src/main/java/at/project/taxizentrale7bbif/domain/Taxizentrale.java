@@ -41,9 +41,12 @@ public class Taxizentrale extends AbstractPersistable<Long> {
     @Embedded //taxizentrale will also get the columns from the address class
     private Adresse adresse;
 
+    /*
     @Builder.Default
     @OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "zentrale")
     private List<Auto> autos = new ArrayList<>(5);
+
+
 
     public Taxizentrale(String name, String telefonnummer, int kmPreis, int grundPreis) {
         this.name = when(name, "name").isNotEmpty().isNotBlank().thenAssign();
@@ -93,5 +96,5 @@ public class Taxizentrale extends AbstractPersistable<Long> {
     }
 
 
-
+*/
 }

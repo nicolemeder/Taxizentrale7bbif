@@ -23,9 +23,9 @@ import java.util.function.Supplier;
 public class Fahrt extends AbstractPersistable<Long> implements TokenSourceProvider {
 
 
+    private String nummer;
 
     @Positive
-    private String nummer;
     private Integer streckeInKm;
     private BigDecimal kosten;
 
@@ -34,9 +34,12 @@ public class Fahrt extends AbstractPersistable<Long> implements TokenSourceProvi
     @Embedded
     private Adresse ziel;
 
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_Fahrt_2_Mitarbeiter"))
+    @JoinColumn(name = "taxifahrer", foreignKey = @ForeignKey(name = "FK_Fahrt_2_Mitarbeiter"))
     private Mitarbeiter taxifahrer;
+
+
 
 
     @Override

@@ -23,6 +23,7 @@ public class Adresse {
     @Max(4)
     private Integer plz;
 
+
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_Adresse_2_Bundesland"))
     private Bundesland bundesland;
