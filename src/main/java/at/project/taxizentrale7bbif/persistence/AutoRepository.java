@@ -1,4 +1,4 @@
-package at.project.taxizentrale7bbif.persistence;
+/* package at.project.taxizentrale7bbif.persistence;
 
 import at.project.taxizentrale7bbif.domain.Auto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,3 +12,5 @@ public interface AutoRepository extends JpaRepository<Auto, Long>{
 }
 
 //in the making
+
+ */

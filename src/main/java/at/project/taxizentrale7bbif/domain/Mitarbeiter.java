@@ -32,7 +32,12 @@ public class Mitarbeiter extends AbstractPersistable<Long> {
     @Size(min = 10, max = 10)
     private String telefonnummer;
 
+    /*
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_Mitarbeiter_2_Auto"))
+    @JoinColumn(name = "auto", foreignKey = @ForeignKey(name = "FK_Mitarbeiter_2_Auto"))
     private Auto auto;
+
+
+     */
+
 }

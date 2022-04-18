@@ -38,14 +38,16 @@ public class Auto extends AbstractPersistable<Long> {
     @Positive
     private Integer ps;
 
-
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, optional = false)
+/*
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, optional = true)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_Auto_2_Taxizentrale"))
     private Taxizentrale zentrale;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_Auto_2_Marke"))
     private Marke marke;
+
+
 
 
     //@Enumerated(EnumType.STRING)
@@ -65,5 +67,5 @@ public class Auto extends AbstractPersistable<Long> {
         return this;
     }
 
-
+*/
 }
