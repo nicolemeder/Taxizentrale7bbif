@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 
 public class CreateFahrtForm {
     @NotBlank
-    @Size(min = 1, max = 20)
+    @Size(min = 4, max = 20)
     private String nummer;
 
     private Long mitarbeiterId;
